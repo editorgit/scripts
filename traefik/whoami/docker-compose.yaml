@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  whoami0:
+    image: emilevauge/whoami
+    networks:
+      - proxy
+    deploy:
+      labels:
+        traefik.enable: "true"
+        traefik.frontend.rule: 'Host: whoami.rwm.network'
+        traefik.port: 80
+        traefik.docker.network: 'proxy'
+
+
+networks:
+  proxy:
+    external: true

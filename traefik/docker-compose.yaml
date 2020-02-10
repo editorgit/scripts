@@ -1,0 +1,48 @@
+
+
+version: '3'
+
+services:
+  traefik:
+    image: traefik:alpine
+    command: |-
+        --entrypoints="Name:http Address::80"
+        # --entrypoints="Name:https Address::443 TLS"
+        # --defaultentrypoints="http,https"
+        # --acme
+        # --acme.storage=/acme/acme.json
+        # --acme.entryPoint=https
+        # --acme.httpChallenge.entryPoint=http
+        # --acme.onHostRule=true
+        # --acme.onDemand=false
+        # --acme.email="siplace@gmail.com"
+        --accesslogsfile="/var/log/access.log"
+        --docker
+        --docker.swarmmode
+        --docker.domain="rwm.network"
+        --docker.watch
+        --web
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    networks:
+      - proxy
+    volumes:
+      - traefik_acme:/acme/
+      - traefik_logs:/var/log/access.log
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+
+volumes:
+  traefik_acme:
+  traefik_logs:
+
+# You'll need to create an network with the overlay driver
+# ~$ docker network create --driver overlay proxy
+networks:
+  proxy:
+    external: true
