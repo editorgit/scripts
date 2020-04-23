@@ -7,15 +7,15 @@ services:
     image: traefik:alpine
     command: |-
         --entrypoints="Name:http Address::80"
-        # --entrypoints="Name:https Address::443 TLS"
-        # --defaultentrypoints="http,https"
-        # --acme
-        # --acme.storage=/acme/acme.json
-        # --acme.entryPoint=https
-        # --acme.httpChallenge.entryPoint=http
-        # --acme.onHostRule=true
-        # --acme.onDemand=false
-        # --acme.email="siplace@gmail.com"
+        --entrypoints="Name:https Address::443 TLS"
+        --defaultentrypoints="http,https"
+        --acme
+        --acme.storage=/acme/acme.json
+        --acme.entryPoint=https
+        --acme.httpChallenge.entryPoint=http
+        --acme.onHostRule=true
+        --acme.onDemand=false
+        --acme.email="siplace@gmail.com"
         --accesslogsfile="/var/log/access.log"
         --docker
         --docker.swarmmode
