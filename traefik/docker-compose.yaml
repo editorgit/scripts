@@ -14,7 +14,7 @@ services:
         --acme.entryPoint=https
         --acme.httpChallenge.entryPoint=http
         --acme.onHostRule=true
-        --acme.onDemand=false
+        --acme.onDemand=true
         --acme.email="siplace@gmail.com"
         --accesslogsfile="/var/log/access.log"
         --docker
