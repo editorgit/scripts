@@ -7,7 +7,7 @@ services:
     image: traefik:alpine
     command:
         --entrypoints="Name:http Address::80"
-        --entrypoints="Name:https Address::443 TLS"
+        --entrypoints="Name:https Address::443 Compress:true TLS TLS.MinVersion:VersionTLS12 TLS.SniStrict:true TLS.CipherSuites:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA"
         --defaultentrypoints="http,https"
         --acme
         --acme.storage=/acme/acme.json
