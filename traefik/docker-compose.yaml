@@ -1,5 +1,4 @@
 
-
 version: '3'
 
 services:
@@ -15,7 +14,7 @@ services:
         --acme.httpChallenge.entryPoint=http
         --acme.onHostRule=true
         --acme.onDemand=true
-        --acme.email="siplace@gmail.com"
+        --acme.email="kelly@blinkux.com"
         --accesslogsfile="/var/log/access.log"
         --docker
         --docker.swarmmode
